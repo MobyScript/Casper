@@ -16,7 +16,24 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["casper.gif"],
+      "resources": [
+        "images/left1.png",
+        "images/left2.png",
+        "images/right1.png",
+        "images/right2.png",
+        "images/down1.png",
+        "images/down2.png",
+        "images/up1.png",
+        "images/up2.png",
+        "images/upleft1.png",
+        "images/upleft2.png",
+        "images/upright1.png",
+        "images/upright2.png",
+        "images/downleft1.png",
+        "images/downleft2.png",
+        "images/downright1.png",
+        "images/downright2.png"
+      ],
       "matches": ["<all_urls>"]
     }
   ]
