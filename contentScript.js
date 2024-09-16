@@ -1,3 +1,8 @@
+let animationActive = false; // Tracks if the animation is currently active
+let intervalId = null; // Stores the interval for moving Casper
+let startX = window.innerWidth - 100; // Starting position (right bottom corner)
+let startY = window.innerHeight - 100;
+
 const follower = document.createElement("div");
 follower.id = "Casper";
 document.body.appendChild(follower);
@@ -36,7 +41,6 @@ const images = {
   ],
 };
 
-// Preload the images
 Object.keys(images).forEach((direction) => {
   images[direction].forEach((src) => {
     const img = new Image();
@@ -45,32 +49,33 @@ Object.keys(images).forEach((direction) => {
 });
 
 const gifImage = document.createElement("img");
-gifImage.src = chrome.runtime.getURL("images/left1.png");
+gifImage.src = chrome.runtime.getURL("images/yawn1.png");
 gifImage.alt = "Casper!";
 follower.appendChild(gifImage);
 
-// Random starting position
-function getRandomPosition() {
-  const width = window.innerWidth;
-  const height = window.innerHeight;
-  const x = Math.random() * width;
-  const y = Math.random() * height;
-  return { x, y };
-}
+// Set starting position of Casper
+follower.style.top = `${startY}px`;
+follower.style.left = `${startX}px`;
 
-let { x: followerX, y: followerY } = getRandomPosition();
-follower.style.top = `${followerY}px`;
-follower.style.left = `${followerX}px`;
-
-// Mouse position tracking
-let mouseX = 0;
-let mouseY = 0;
+let mouseX = 0,
+  mouseY = 0;
 document.addEventListener("mousemove", (e) => {
   mouseX = e.pageX;
   mouseY = e.pageY;
 });
 
-// Determine direction of movement
+function getCasperPosition() {
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  const x = width - follower.offsetWidth;
+  const y = height - follower.offsetHeight;
+  return { x, y };
+}
+
+let { x: followerX, y: followerY } = getCasperPosition();
+follower.style.top = `${followerY}px`;
+follower.style.left = `${followerX}px`;
+
 function getDirection(followerX, followerY, mouseX, mouseY) {
   const dx = mouseX - followerX;
   const dy = mouseY - followerY;
@@ -95,7 +100,7 @@ function getDirection(followerX, followerY, mouseX, mouseY) {
   }
 }
 
-let frame = 4;
+let frame = 0;
 function updateImage(follower, direction) {
   const imageSrc = images[direction][frame % 2];
   follower.querySelector("img").src = imageSrc;
@@ -118,5 +123,3 @@ function moveFollower() {
 }
 
 setInterval(moveFollower, 200);
-
-moveFollower();
