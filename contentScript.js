@@ -1,6 +1,12 @@
 const follower = document.createElement("div");
-follower.id = "cursor-chaser";
+follower.id = "Casper";
 document.body.appendChild(follower);
+
+const gifImage = document.createElement("img");
+gifImage.src = chrome.runtime.getURL("casper.gif");
+gifImage.alt = "Casper";
+
+follower.appendChild(gifImage);
 
 function getRandomPosition() {
   const width = window.innerWidth;
@@ -22,12 +28,12 @@ document.addEventListener("mousemove", (e) => {
 });
 
 function moveFollower() {
-  const speed = 0.02;
+  const speed = 0.5;
   const dx = mouseX - followerX;
   const dy = mouseY - followerY;
 
-  followerX += dx * 0.06 * speed;
-  followerY += dy * 0.06 * speed;
+  followerX += dx * 0.01 * speed;
+  followerY += dy * 0.01 * speed;
 
   follower.style.top = `${followerY}px`;
   follower.style.left = `${followerX}px`;

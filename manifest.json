@@ -13,5 +13,11 @@
       "js": ["contentScript.js"],
       "css": ["casper.css"]
     }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["casper.gif"],
+      "matches": ["<all_urls>"]
+    }
   ]
 }

@@ -1,10 +1,14 @@
-#cursor-chaser {
+#Casper {
   position: absolute;
+  width: auto;
+  height: auto;
+  pointer-events: none; /* So it doesn't block mouse interactions */
+  transform: translate(-50%, -50%);
+  z-index: 10000; /* Keep it on top of other elements */
+}
+
+#Casper img {
   width: 40px;
   height: 40px;
-  background-color: rgba(0, 0, 255, 0.5); /* A blue circle */
-  border-radius: 50%;
-  pointer-events: none; /* Ensure it doesn't block clicks */
-  transform: translate(-50%, -50%); /* Center the element */
-  z-index: 10000; /* Make sure it stays on top of other elements */
+  border-radius: 50%; /* If you want the GIF rounded */
 }
