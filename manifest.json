@@ -3,7 +3,7 @@
   "name": "Casper",
   "version": "1.0",
   "description": "Your best friend Casper!",
-  "permissions": ["storage", "activeTab", "scripting"],
+  "permissions": ["storage", "activeTab"],
   "action": {
     "default_popup": "popup.html"
   },
